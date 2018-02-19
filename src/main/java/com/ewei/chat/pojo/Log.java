@@ -2,12 +2,17 @@ package com.ewei.chat.pojo;
 
 import java.io.Serializable;
 
-public class log implements Serializable{
+public class Log implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private String id;
+	@Override
+	public String toString() {
+		return "Log [id=" + id + ", userid=" + userid + ", time=" + time + ", type=" + type + ", detail=" + detail
+				+ ", ip=" + ip + "]";
+	}
 	private String userid;
 	private String time;
 	private String type;
