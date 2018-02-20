@@ -1,7 +1,14 @@
 package com.ewei.chat.controller;
 
+
 import javax.annotation.Resource;
 
+
+
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+>>>>>>> upstream/development
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,11 +19,18 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ewei.chat.service.UserService;
 import com.ewei.chat.pojo.User;
 
+import com.ewei.chat.service.LogService;
+
+
 @Controller
 public class LoginController {
+
 	
 	@Resource
 	private UserService userService;
+	
+	@Autowired
+	private LogService logService;
 	
 	@RequestMapping(value="login",method=RequestMethod.GET)
 	private String login(Model model) {

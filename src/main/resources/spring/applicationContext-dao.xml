@@ -9,7 +9,6 @@
 	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
 	<!-- 配置 读取properties文件 jdbc.properties -->
 <context:property-placeholder location="classpath:config/jdbc.properties"/>
-
 	<!-- 配置 数据源 -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
 		<property name="driverClassName" value="${jdbc.driver}" />
@@ -20,18 +19,24 @@
 
 	<!-- 配置SqlSessionFactory -->
 	<bean  id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="mapperLocations" value="classpath:com/ewei/chat/mapper" />
-		<!-- 设置Mybatis核心配置文件 -->
+
+		<!-- 设置Mybatis核心配置文件 --> 
 		<property name="configLocation" value="classpath:mybatis/SqlMapConfig.xml"/>
+		 <!-- 自动扫描mapping.xml文件 -->
+		<property name="mapperLocations" value="classpath:com/ewei/chat/mapper/*.xml"/>
 		<!-- 设置数据源 -->
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
 	
 	<!--配置Mapper扫描  -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!--配置扫描Dao接口包,动态实现Dao接口,注入到spring容器中  -->
 		<!-- 设置Mapper扫描包 -->
 		<property name="basePackage" value="com.ewei.chat.dao"></property>
+<<<<<<< HEAD
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+=======
+>>>>>>> upstream/development
 	</bean>
 	
 	    <!-- 开启事务 -->
