@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ewei.chat.dao.UserDao" >
+	
+	<resultMap id="BaseResultMap" type="com.ewei.chat.pojo.User">
+		<id column="USERID" property="userid" />
+		<result column="PASSWORD" property="password" />
+		<result column="NICKNAME" property="nickname" /> 
+	</resultMap>
+	
+	
+	<select id="selectUserById" parameterType="String" resultMap="BaseResultMap">
+		select USERID, PASSWORD from user where USERID = #{userid}
+	</select>
+
+
+	<insert id="insert" parameterType="com.ewei.chat.pojo.User">
+		insert into user(USERID,PASSWORD,NICKNAME) VALUES (#{userid},#{password},#{nickname})
+	</insert> 	
+</mapper>
