@@ -33,10 +33,7 @@
 		<!--配置扫描Dao接口包,动态实现Dao接口,注入到spring容器中  -->
 		<!-- 设置Mapper扫描包 -->
 		<property name="basePackage" value="com.ewei.chat.dao"></property>
-<<<<<<< HEAD
-		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
-=======
->>>>>>> upstream/development
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />	
 	</bean>
 	
 	    <!-- 开启事务 -->

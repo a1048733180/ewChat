@@ -10,6 +10,7 @@
 	<div id="test">
 		<h1>测试登录功能</h1>
 		<a>登录成功跳转的页面</a>
+		<a>haha2:${requestScope.message}</a>
 	</div>
 </body>
 </html>

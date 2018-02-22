@@ -5,16 +5,16 @@ package com.ewei.chat.pojo;
  *
  */
 public class User {
-	private int userid; //用户id
+	private String userid; //用户id
 	private String password; //用户密码
 	private String nickname; //用户名称
 	
 	
 	//get and set方法
-	public int getUserid() {
+	public String getUserid() {
 		return userid;
 	}
-	public void setUserid(int userid) {
+	public void setUserid(String userid) {
 		this.userid = userid;
 	}
 	public String getPassword() {
