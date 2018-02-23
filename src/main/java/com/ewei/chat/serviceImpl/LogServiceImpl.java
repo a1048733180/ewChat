@@ -44,17 +44,18 @@ public class LogServiceImpl implements LogService {
 
 	@Override
 	public boolean insert(Log log) {
-		return false;
+		System.out.println(logDao);
+		return logDao.insert(log);
 	}
 
 	@Override
 	public boolean delete(String id) {
-		return false;
+		return logDao.delete(id);
 	}
 
 	@Override
 	public boolean deleteByUserid(String userid) {
-		return false;
+		return logDao.deleteByUserid(userid);
 	}
 
 	@Override
