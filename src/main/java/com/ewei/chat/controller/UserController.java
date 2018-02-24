@@ -37,7 +37,7 @@ public class UserController {
 	}
 	
 	/**
-	 * 
+	 * 修改个人资料
 	 * @param userid
 	 * @param user 读取前端文本框的数据封装成User传回后台
 	 * @param mav
@@ -47,11 +47,52 @@ public class UserController {
 	public ModelAndView modify(@PathVariable("userid") String userid,User user,ModelAndView mav) {
 		boolean a = userService.update(user);
 		if(!a) {
-	                                                                                          ，，，，，，，，		System.out.println("测试代码：update失败");
+			System.out.println("测试代码：update失败");
 			mav.setViewName("login");
 		}
 		mav.addObject("message","更新成功");
 		mav.setViewName("setting");
+		return mav;
+	}
+	
+	/**
+	 * 
+	 * @param userid 用户id
+	 * @param password 原密码
+	 * @param npassword 新密码
+	 * @param mav
+	 * @return 新密码和原密码相同时也更新成功
+	 *
+	 */
+	@RequestMapping(value="/{userid}/modifypassword")
+	public ModelAndView modifyPassword(@PathVariable("userid") String userid,@RequestParam("password") String password,@RequestParam("npassword") String npassword,ModelAndView mav) {
+		//判断用户输入的原密码是否正确
+		User user = userService.selectUserById(userid);
+		System.out.println(user.getPassword());
+		System.out.println(password);
+		if(!user.getPassword().equals(password)) {
+			System.out.println("密码错误");
+			mav.addObject("message","密码错误，请重新输入");
+			mav.setViewName("redirect:/{userid}/seepass");//返回修改密码的界面
+		}else {
+			user.setPassword(npassword);
+			if(userService.update(user)) {
+				mav.addObject("message","修改密码成功");
+				System.out.println("测试代码—修改密码成功");
+				mav.setViewName("redirect:/{userid}/seepass");//返回修改密码的界面
+			}
+		}
+		return mav;
+	} 
+	
+	/**
+	 * 修改密码页面
+	 * @param mav
+	 * @return
+	 */
+	@RequestMapping(value="/{userid}/seepass",method=RequestMethod.GET)
+	public ModelAndView seePass(ModelAndView mav) {
+		mav.setViewName("seepass");
 		return mav;
 	}
 }

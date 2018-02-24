@@ -14,6 +14,7 @@
 		<a>haha2:${requestScope.message}</a><br>
 	</div>
 	<a>${userid}</a><br>
-	<a href="<%=path%>/${userid}/message">查看个人资料</a>
+	<a href="<%=path%>/${userid}/message">查看个人资料</a><br>
+	<a href="<%=path%>/${userid}/seepass">修改密码</a>
 </body>
 </html>
