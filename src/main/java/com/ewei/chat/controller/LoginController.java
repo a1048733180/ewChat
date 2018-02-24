@@ -2,6 +2,8 @@ package com.ewei.chat.controller;
 
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,7 +36,7 @@ public class LoginController {
 	
 	//登录
 	@RequestMapping(value="login",method=RequestMethod.POST)
-	public ModelAndView login(@RequestParam("userid") String userid,@RequestParam("password") String password,ModelAndView mv) { 
+	public ModelAndView login(@RequestParam("userid") String userid,@RequestParam("password") String password,ModelAndView mv,HttpSession session) { 
 		System.out.println("测试代码 进入了login");
 		User user = userService.selectUserById(userid);
 		if(user != null) {
@@ -48,9 +50,11 @@ public class LoginController {
 			}else {
 				//测试代码
 				System.out.println("登录成功");
+				//存入session中
+				session.setAttribute("userid", userid);
 				mv.addObject("message","登录成功，正在登录");
 				//跳转到主页面
-				mv.setViewName("redirect:/main");
+				mv.setViewName("main");
 			}		
 		}else {
 			System.out.println("账号不存在");

@@ -10,11 +10,19 @@
 	
 	
 	<select id="selectUserById" parameterType="String" resultMap="BaseResultMap">
-		select USERID, PASSWORD from user where USERID = #{userid}
+		select USERID, PASSWORD, NICKNAME from user where USERID = #{userid}
 	</select>
 
 
 	<insert id="insert" parameterType="com.ewei.chat.pojo.User">
 		insert into user(USERID,PASSWORD,NICKNAME) VALUES (#{userid},#{password},#{nickname})
 	</insert> 	
+	
+	<update id="update" parameterType="com.ewei.chat.pojo.User">
+		update user 
+		<set>
+			<if test="nickname != null and nickname !='' " >nickname=#{nickname},</if>
+		</set>
+		where userid = #{userid}
+	</update>
 </mapper>

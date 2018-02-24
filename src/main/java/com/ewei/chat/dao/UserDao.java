@@ -12,4 +12,5 @@ public interface UserDao {
 	
 	boolean insert(User user); //添加用户
 	
+	boolean update(User user); //更新用户
 }
