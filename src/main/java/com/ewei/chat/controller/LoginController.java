@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.ewei.chat.service.UserService;
+import com.ewei.chat.utils.DefinedUtil;
+import com.ewei.chat.utils.LogUtil;
+import com.mysql.jdbc.log.LogUtils;
 import com.ewei.chat.pojo.User;
 
 import com.ewei.chat.service.LogService;
@@ -20,8 +22,6 @@ import com.ewei.chat.service.LogService;
 
 @Controller
 public class LoginController {
-
-	
 	@Resource
 	private UserService userService;
 	
@@ -36,7 +36,7 @@ public class LoginController {
 	
 	//登录
 	@RequestMapping(value="login",method=RequestMethod.POST)
-	public ModelAndView login(@RequestParam("userid") String userid,@RequestParam("password") String password,ModelAndView mv,HttpSession session) { 
+	public ModelAndView login(@RequestParam("userid") String userid,@RequestParam("password") String password,ModelAndView mv,HttpSession session,DefinedUtil definedUtil) { 
 		System.out.println("测试代码 进入了login");
 		User user = userService.selectUserById(userid);
 		if(user != null) {
@@ -50,9 +50,13 @@ public class LoginController {
 			}else {
 				//测试代码
 				System.out.println("登录成功");
+
+				//	记录进入日志
+				LogUtil.insert(userid, definedUtil.LOG_TYPE_LOGIN, definedUtil.LOG_DETAIL_USER_LOGIN, logService);
 				//存入session中
 				session.setAttribute("userid", userid);
 				mv.addObject("message","登录成功，正在登录");
+				mv.addObject("user",user);
 				//跳转到主页面
 				mv.setViewName("main");
 			}		
@@ -87,7 +91,7 @@ public class LoginController {
 	 * @param nickname 用户昵称
 	 */
 	@RequestMapping(value="register",method=RequestMethod.POST)
-	public ModelAndView register(@RequestParam("userid") String userid,@RequestParam("password") String password,@RequestParam("nickname") String nickname,ModelAndView mav) {
+	public ModelAndView register(@RequestParam("userid") String userid,@RequestParam("password") String password,@RequestParam("nickname") String nickname,ModelAndView mav,DefinedUtil definedUtil) {
 		User user = new User();
 		//校验用户名是否在数据库中已经存在，若存在则返回错误信息
 		if(userService.selectUserById(userid) != null) {
@@ -100,6 +104,7 @@ public class LoginController {
 		user.setPassword(password);
 		user.setNickname(nickname);
 		userService.insert(user);
+		LogUtil.insert(userid, definedUtil.LOG_TYPE_REGIST,definedUtil.LOG_DETAIL_USER_REGIST , logService);
 		mav.addObject("message","注册成功，请登录");
 		mav.setViewName("login");
 		System.out.println("register注册成功");

@@ -18,14 +18,18 @@ public class LogController {
 	@RequestMapping(value="{userid}/log")
 //	    @PathVariable 可以将 URL 中占位符参数绑定到控制器处理方法的入参中
 //	    @RequestParam用于将请求参数区数据映射到功能处理方法的参数上。
-	public ModelAndView selectAll(@PathVariable("userid") String userid, @RequestParam(defaultValue = "1") int page) {
+	public ModelAndView selectAll() {
+		String userid= "admin";
+		int page = 1;
 		ModelAndView mav = new ModelAndView("log");
 		int pageSize = 5;
 		List<Log> list = logService.selectLogByUserid(userid, page, pageSize);
+		for (Log log : list) {
+		System.out.println(log.toString());
+		}
 		int count = logService.selectCountByUserid(userid,pageSize);
 		mav.addObject("list",list);
 		mav.addObject("count",count);
 		return mav;
 	}
-	
 }

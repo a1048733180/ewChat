@@ -6,18 +6,51 @@
 		<id column="USERID" property="userid" />
 		<result column="PASSWORD" property="password" />
 		<result column="NICKNAME" property="nickname" /> 
-	</resultMap>
-	
-	
+	</resultMap>	
 	<select id="selectUserById" parameterType="String" resultMap="BaseResultMap">
-		select USERID, PASSWORD, NICKNAME from user where USERID = #{userid}
+
+		select * from user where USERID = #{userid}
+
 	</select>
-
-
+<!-- 更新用户 -->
+  <update id="update" parameterType="com.ewei.chat.pojo.User">
+    UPDATE user
+    <set>
+      <if test="password != null and password != ''">
+        PASSWORD = #{password, jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null and nickname != ''">
+        NICKNAME = #{nickname, jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null and sex != ''">
+        SEX = #{sex, jdbcType=INTEGER},
+      </if>
+      <if test="age != null and age != ''">
+        AGE = #{age, jdbcType=INTEGER},
+      </if>
+      <if test="profilehead != null and profilehead != ''">
+        PROFILEHEAD = #{profilehead, jdbcType=VARCHAR},
+      </if>
+      <if test="profile != null and profile != ''">
+        PROFILE = #{profile, jdbcType=VARCHAR},
+      </if>
+      <if test="firsttime != null and firsttime != ''">
+        FIRSTTIME = #{firsttime, jdbcType=VARCHAR},
+      </if>
+      <if test="lasttime != null and lasttime != ''">
+        LASTTIME = #{lasttime, jdbcType=VARCHAR},
+      </if>
+      <if test="status != null and status != ''">
+        STATUS = #{status, jdbcType=INTEGER},
+      </if>
+    </set>
+    WHERE USERID = #{userid, jdbcType=VARCHAR}
+  </update>
 	<insert id="insert" parameterType="com.ewei.chat.pojo.User">
 		insert into user(USERID,PASSWORD,NICKNAME) VALUES (#{userid},#{password},#{nickname})
 	</insert> 	
 	
+
 	<update id="update" parameterType="com.ewei.chat.pojo.User">
 		update user 
 		<set>
@@ -26,4 +59,6 @@
 		</set>
 		where userid = #{userid}
 	</update>
+
+
 </mapper>

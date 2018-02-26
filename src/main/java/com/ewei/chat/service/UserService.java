@@ -8,8 +8,6 @@ import com.ewei.chat.pojo.User;
  */
 public interface UserService {
 	User selectUserById(String userid) ;
-	
 	boolean insert(User user);
-	
 	boolean update(User user);
 }

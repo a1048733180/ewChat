@@ -27,6 +27,12 @@ public class UserServiceImpl implements UserService{
 	public boolean insert(User user) {
 		return userDao.insert(user);
 	}
+
+	
+	@Override
+	public boolean update(User user) {
+		return userDao.update(user);
+	}
 	
 	@Override
 	public boolean update(User user) {
