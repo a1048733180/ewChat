@@ -2,6 +2,8 @@ package com.ewei.chat.controller;
 
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.ewei.chat.service.UserService;
 import com.ewei.chat.utils.DefinedUtil;
 import com.ewei.chat.utils.LogUtil;
@@ -35,7 +36,7 @@ public class LoginController {
 	
 	//登录
 	@RequestMapping(value="login",method=RequestMethod.POST)
-	public ModelAndView login(@RequestParam("userid") String userid,@RequestParam("password") String password,ModelAndView mv,DefinedUtil definedUtil) { 
+	public ModelAndView login(@RequestParam("userid") String userid,@RequestParam("password") String password,ModelAndView mv,HttpSession session,DefinedUtil definedUtil) { 
 		System.out.println("测试代码 进入了login");
 		User user = userService.selectUserById(userid);
 		if(user != null) {
@@ -51,10 +52,12 @@ public class LoginController {
 				System.out.println("登录成功");
 				//	记录进入日志
 				LogUtil.insert(userid, definedUtil.LOG_TYPE_LOGIN, definedUtil.LOG_DETAIL_USER_LOGIN, logService);
+				//存入session中
+				session.setAttribute("userid", userid);
 				mv.addObject("message","登录成功，正在登录");
 				mv.addObject("user",user);
 				//跳转到主页面
-				mv.setViewName("redirect:/chat");
+				mv.setViewName("main");
 			}		
 		}else {
 			System.out.println("账号不存在");

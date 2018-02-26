@@ -8,6 +8,7 @@ public class User {
 	private String userid; //用户id
 	private String password; //用户密码
 	private String nickname; //用户名称
+<<<<<<< HEAD
 	private String sex;
 	private String age;
 	private String profile;
@@ -15,20 +16,26 @@ public class User {
 	private String firsttime;
 	private String lasttime;
 	private String status;
-	//get和set方法
+	
 	public String getFirsttime() {
 		return firsttime;
 	}
 	public void setFirsttime(String firsttime) {
 		this.firsttime = firsttime;
 	}
+=======
+	private String lasttime; //最后登录时间
+	
+	//get和set方法
+	
+>>>>>>> b0a3d8302e6672b56441edcdaec709af636492f5
 	public String getLasttime() {
 		return lasttime;
 	}
 	public void setLasttime(String lasttime) {
 		this.lasttime = lasttime;
 	}
-
+<<<<<<< HEAD
 	public String getStatus() {
 		return status;
 	}
@@ -59,7 +66,9 @@ public class User {
 	public void setProfile(String profile) {
 		this.profile = profile;
 	}
-
+	//get and set方法
+=======
+>>>>>>> b0a3d8302e6672b56441edcdaec709af636492f5
 	public String getUserid() {
 		return userid;
 	}
@@ -77,6 +86,7 @@ public class User {
 	}
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
+<<<<<<< HEAD
 	}
 	@Override
 	public String toString() {
@@ -84,7 +94,7 @@ public class User {
 				+ ", age=" + age + ", profile=" + profile + ", profilehead=" + profilehead + ", firsttime=" + firsttime
 				+ ", lasttime=" + lasttime + ", status=" + status + "]";
 	}
-
+=======
 	}	
-
+>>>>>>> b0a3d8302e6672b56441edcdaec709af636492f5
 }

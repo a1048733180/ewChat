@@ -6,9 +6,15 @@
 		<id column="USERID" property="userid" />
 		<result column="PASSWORD" property="password" />
 		<result column="NICKNAME" property="nickname" /> 
-	</resultMap>	
+	</resultMap>
+	
+	
 	<select id="selectUserById" parameterType="String" resultMap="BaseResultMap">
+<<<<<<< HEAD
 		select * from user where USERID = #{userid}
+=======
+		select USERID, PASSWORD, NICKNAME from user where USERID = #{userid}
+>>>>>>> b0a3d8302e6672b56441edcdaec709af636492f5
 	</select>
 <!-- 更新用户 -->
   <update id="update" parameterType="com.ewei.chat.pojo.User">
@@ -44,6 +50,7 @@
     </set>
     WHERE USERID = #{userid, jdbcType=VARCHAR}
   </update>
+
 	<insert id="insert" parameterType="com.ewei.chat.pojo.User">
 		insert into user(USERID,PASSWORD,NICKNAME) VALUES (#{userid},#{password},#{nickname})
 	</insert> 	
