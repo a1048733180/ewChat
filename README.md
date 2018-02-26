@@ -7,6 +7,6 @@
 2.开发者本地tomcat需配置虚拟目录
    ====>可以在eclipse的Servers下双击打开tomcat
    =====>然后选择Modules选项
-   =====>add web modules
+   =====>Add External Web Modules
    =====>path:/pic   DocumentBase: E:\upload
 *************************
