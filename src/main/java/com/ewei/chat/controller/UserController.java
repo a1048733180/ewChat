@@ -21,13 +21,16 @@ import com.ewei.chat.service.UserService;
 import com.ewei.chat.utils.DefinedUtil;
 import com.ewei.chat.utils.LogUtil;
 
+
 @Controller
 @SessionAttributes("userid")
 public class UserController {
+
 	@Autowired
 	private LogService logService;
 	@Resource
 	private UserService userService;
+	
 	@RequestMapping(value = "{userid}/upload")
 	public String upload(@PathVariable("userid") String userid, MultipartFile file, 
 			RedirectAttributes attributes,DefinedUtil definedUtil) {
@@ -60,6 +63,7 @@ public class UserController {
         view.addObject("user", user);
         return view;
     }
+
 	/**
 	 * 个人资料展示
 	 * @param userid 用户id,根据用户id查询数据

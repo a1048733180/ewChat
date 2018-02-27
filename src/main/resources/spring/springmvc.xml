@@ -6,8 +6,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
-	<!-- 配置Controller扫描 -->
-	<context:component-scan base-package="com.ewei.chat.controller" />
+	<!-- 配置Controller和websocket扫描 -->
+	<context:component-scan base-package="com.ewei.chat.controller,com.ewei.chat.websocket" />
 
 	<!-- 配置注解驱动 -->
 	<mvc:annotation-driven></mvc:annotation-driven>
