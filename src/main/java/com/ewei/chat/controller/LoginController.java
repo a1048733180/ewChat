@@ -36,7 +36,7 @@ public class LoginController {
 	
 	//登录
 	@RequestMapping(value="login",method=RequestMethod.POST)
-	public ModelAndView login(@RequestParam("userid") String userid,@RequestParam("password") String password,ModelAndView mv,HttpSession session,DefinedUtil definedUtil) { 
+	public ModelAndView login(@RequestParam("userid") String userid,@RequestParam("password") String password,ModelAndView mv,HttpSession httpSession,DefinedUtil definedUtil) { 
 		System.out.println("测试代码 进入了login");
 		User user = userService.selectUserById(userid);
 		if(user != null) {
@@ -53,8 +53,8 @@ public class LoginController {
 
 				//	记录进入日志
 				LogUtil.insert(userid, definedUtil.LOG_TYPE_LOGIN, definedUtil.LOG_DETAIL_USER_LOGIN, logService);
-				//存入session中
-				session.setAttribute("userid", userid);
+				//存入httpSession中
+				httpSession.setAttribute("userid", userid);
 				mv.addObject("message","登录成功，正在登录");
 				mv.addObject("user",user);
 				//跳转到主页面
