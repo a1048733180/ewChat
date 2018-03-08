@@ -51,14 +51,7 @@
 	</insert> 	
 	
 
-	<update id="update" parameterType="com.ewei.chat.pojo.User">
-		update user 
-		<set>
-			<if test="nickname != null and nickname !='' " >nickname=#{nickname},</if>
-			<if test="password != null and password !='' ">password=#{password},</if>
-		</set>
-		where userid = #{userid}
-	</update>
+
 
 
 </mapper>

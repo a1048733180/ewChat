@@ -9,7 +9,6 @@
 <body>
 <jsp:include page="include/header.jsp"/>
 <div class="am-cf admin-main">
-    <jsp:include page="include/sidebar.jsp"/>
 
     <!-- content start -->
     <div class="admin-content">

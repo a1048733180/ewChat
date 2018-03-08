@@ -9,13 +9,12 @@
 <body>
 <jsp:include page="include/header.jsp"/>
 <div class="am-cf admin-main">
-    <jsp:include page="include/sidebar.jsp"/>
 
     <!-- content start -->
     <div class="admin-content">
 
         <div class="am-cf am-padding">
-            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">个人设置</strong> / <small>form</small></div>
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">个人设置</strong> / <small>form</small>${message}</div>
         </div>
 
         <div class="am-tabs am-margin" data-am-tabs>
@@ -28,7 +27,7 @@
             <div class="am-tabs-bd">
                 <div class="am-tab-panel am-fade am-in am-active" id="tab1">
                     <c:set value="${user}" var="user"/>
-                    <form class="am-form am-form-horizontal" id="information-form" action="${ctx}/${userid}/update" method="post" data-am-validator>
+                    <form class="am-form am-form-horizontal" id="information-form" action="${ctx}/${userid}/modify" method="post" data-am-validator>
                         <div class="am-form-group">
                             <label for="userid" class="am-u-sm-2 am-form-label">用户名</label>
                             <div class="am-u-sm-10">
@@ -107,18 +106,18 @@
                 </div>
 
                 <div class="am-tab-panel am-fade" id="tab3">
-                    <form class="am-form am-form-horizontal" data-am-validator action="${ctx}/${userid}/pass" method="post">
+                    <form class="am-form am-form-horizontal" data-am-validator action="${ctx}/${userid}/modifypassword" method="post">
                         <div class="am-form-group">
                             <label for="password1" class="am-u-sm-2 am-form-label">原密码</label>
                             <div class="am-u-sm-10">
-                                <input type="password" id="password1" name="oldpass" required placeholder="请输入原密码...">
+                                <input type="password" id="password1" name="password" required placeholder="请输入原密码...">
                             </div>
                         </div>
 
                         <div class="am-form-group">
                             <label for="password2" class="am-u-sm-2 am-form-label">新密码</label>
                             <div class="am-u-sm-10">
-                                <input type="password" id="password2" name="newpass" required placeholder="请输入新密码...">
+                                <input type="password" id="password2" name="npassword" required placeholder="请输入新密码...">
                             </div>
                         </div>
 

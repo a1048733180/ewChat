@@ -13,9 +13,10 @@
                     ${userid} <span class="am-icon-caret-down"></span>
                 </a>
                 <ul class="am-dropdown-content">
-                    <li><a href="${ctx}/${userid}"><span class="am-icon-user"></span> 资料</a></li>
+                 <li><a href="${ctx}/jsp/demo.jsp"><span class="am-icon-user"></span> 主页</a></li>
+                    <li><a href="${ctx}/${userid}/message"><span class="am-icon-user"></span> 资料</a></li>
                     <li><a href="${ctx}/${userid}/config"><span class="am-icon-cog"></span> 设置</a></li>
-                    <li><a href="${ctx}/user/logout"><span class="am-icon-power-off"></span> 注销</a></li>
+                    <li><a href="${ctx}/logout"><span class="am-icon-power-off"></span> 注销</a></li>
                 </ul>
             </li>
         </ul>

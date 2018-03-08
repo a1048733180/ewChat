@@ -58,7 +58,7 @@ public class UserController {
 	
     @RequestMapping(value = "{userid}/config")
     public ModelAndView setting(@PathVariable("userid") String userid){
-        ModelAndView view = new ModelAndView("info-setting");
+        ModelAndView view = new ModelAndView("info-setting2");
         User user = userService.selectUserById(userid);
         view.addObject("user", user);
         return view;
@@ -80,7 +80,7 @@ public class UserController {
 			return mav;
 		}
 		mav.addObject("user", user);
-		mav.setViewName("setting");//info-setting是展示个人信息的页面,到时候看前端页面
+		mav.setViewName("information");//info-setting是展示个人信息的页面,到时候看前端页面
 		return mav;
 	}
 	
@@ -121,13 +121,13 @@ public class UserController {
 		if(!user.getPassword().equals(password)) {
 			System.out.println("密码错误");
 			mav.addObject("message","密码错误，请重新输入");
-			mav.setViewName("redirect:/{userid}/seepass");//返回修改密码的界面
+			mav.setViewName("redirect:/{userid}/config");//返回修改密码的界面
 		}else {
 			user.setPassword(npassword);
 			if(userService.update(user)) {
 				mav.addObject("message","修改密码成功");
 				System.out.println("测试代码—修改密码成功");
-				mav.setViewName("redirect:/{userid}/seepass");//返回修改密码的界面
+				mav.setViewName("redirect:/{userid}/config");//返回修改密码的界面
 			}
 		}
 		return mav;
@@ -143,4 +143,23 @@ public class UserController {
 		mav.setViewName("seepass");
 		return mav;
 	}
+	
+	   /**
+     * 聊天主页
+     */
+    @RequestMapping(value = "chat")
+    public ModelAndView getIndex(){
+        ModelAndView view = new ModelAndView("chat");
+        return view;
+    }
+    @RequestMapping(value = "system-setting")
+    public ModelAndView systemSetting(){
+        ModelAndView view = new ModelAndView("system-setting");
+        return view;
+    }
+    @RequestMapping(value = "about")
+    public ModelAndView about(){
+        ModelAndView view = new ModelAndView("about");
+        return view;
+    }
 }

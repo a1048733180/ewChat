@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/demo-chat.css">
+    <title>微信聊天室</title>
+    <script type="text/javascript">
+    // JS实现选项卡切换
+      window.onload=function(){
+        function tab(obj){
+          var myTab = document.getElementById(obj);    //整个div
+          var myUl = myTab.getElementsByTagName("ul")[0];//一个节点
+          var myLi = myUl.getElementsByTagName("li");    //数组
+          var myDiv = myTab.getElementsByTagName("div"); //数组
+
+
+          for(var i = 0; i<myLi.length;i++){
+                myLi[i].index = i;
+                myLi[i].onclick = function(){
+
+                    for(var j = 0; j < myLi.length; j++){
+                        myLi[j].className="off";
+                        myDiv[j].className ="hide";
+                    }
+                    this.className = "on";
+                    myDiv[this.index].className = "show";
+                    }
+                  }
+
+        }
+        tab("tab2");
+        tab("tab3");
+
+        function LargeTab(tar){
+          var oTab = document.getElementById(tar);    //整个div
+          var oUl = oTab.getElementsByTagName("ul")[0];//一个节点
+          var oLi = oUl.getElementsByTagName("li");    //数组
+          var oDiv = oTab.getElementsByTagName("div"); //数组
+
+
+          for(var i = 0; i<oLi.length;i++){
+                oLi[i].index = i;
+                oLi[i].onclick = function(){
+
+                    for(var j = 0; j < oLi.length; j++){
+                        oLi[j].className="off";
+                        oDiv[j].className ="hide";
+                    }
+                    this.className = "on";
+                    oDiv[this.index].className = "show";
+                    }
+                  }
+
+        }
+        LargeTab("tab1");
+
+        function showHide()
+        {
+          var oLi1=document.getElementById("userinstall");
+          var oLi2=document.getElementById("systeminstall");
+
+            if(oLi1.style.display=='block'&&oLi2.style.display=='block')
+            {
+              oLi1.style.display='none';
+              oLi2.style.display='none';
+            }
+            else
+            {
+              oLi1.style.display='block';
+              oLi2.style.display='block';
+            }
+          }
+
+
+        }
+    </script>
+  </head>
+  <body>
+    <div id="main">
+      <div class="header clearfix">
+        <div class="header-left clearfix">
+          <img src="../img/icon.png" alt="wechat图标">
+          <p>ewei聊天室</p>
+        </div>
+        <div id="header-right">
+
+        </div>
+      </div>
+        <div id="tab1" class="clearfix">
+            <ul>
+              <li class="chat clearfix on">
+                <a href="${pageContext.request.contextPath}/chat">
+                 <img src="../img/chat.png" alt="聊天">
+                 <span class="text">聊天</span>
+                </a>
+              </li>
+              <li class="user message clearfix off">
+               <a href="${pageContext.request.contextPath}/{userid}">
+                 <img src="../img/user message.png" alt="个人消息">
+                 <span class="text">个人消息</span>
+                 <img class="star" src="../img/star.png" alt="星标">
+               </a>
+              </li>
+              <li class="install clearfix off">
+               <a href="#">
+                 <img src="../img/install.png" alt="设置">
+                 <span class="text">设置</span>
+                 <span class="install-text" onclick="showHide()">></span>
+               </a>
+              </li>
+              <li class="user—install clearfix off" id="userinstall">
+                <a href="${pageContext.request.contextPath}/{userid}/config">
+                <span class="block"></span>
+                <img src="../img/user install.png" alt="个人设置">
+                <span class="text">个人设置</span>
+                </a>
+              <li class="system—install clearfix off" id="systeminstall">
+                <a href="${pageContext.request.contextPath}/system-setting">
+                 <span class="block"></span>
+                 <img src="../img/system install.png" alt="系统设置">
+                <span class="text">系统设置</span>
+                </a>
+              <li class="system diary clearfix off">
+                <a href="${pageContext.request.contextPath} /${userid}/log">
+                <img src="../img/system diary.png" alt="系统日志">
+                <span class="text">系统日志</span>
+                </a>
+              </li>
+              <li class="help clearfix off"><a href="#">
+                <img src="../img/help.png" alt="帮助">
+                <span class="text">帮助</span>
+                </a>
+              </li>
+              <li class="about clearfix off"><a href="#">
+                <img src="../img/about.png" alt="关于">
+                <span class="text">关于</span>
+                </a>
+              </li>
+              <li class="cancel clearfix off"><a href="${pageContext.request.contextPath}/logout">
+               <img src="../img/cancel.png" alt="注销">
+               <span class="text">注销</span>
+                </a>
+              </li>
+              <div class="left-footer">
+                <div class="welcome clearfix">
+                  <div class="welcome-icon clearfix">
+                   <img src="../img/welcome.png" alt="标签">
+                   <p>welcome</p>
+                  </div>
+                  <p>欢迎使用ewei聊天室( •̀∀•́ )</p>
+                </div>
+              </div>
+            </ul>
+         <!-- 聊天 大切换卡div部分-->
+
+                <div id="" class="content content-chat tab-content-active clearfix show">
+                  <div id="chat-middle">
+                    <div id="message-logging">
+
+                    </div>
+                    <div id="editor">
+                      <textarea name="name" rows="8" cols="80">这里输入你想要的内容....</textarea>
+                    </div>
+                    <div id="function">
+                      <div class="receiver">
+                        <p>发送给：全体成员</p>
+                        <input type="button" name="" value="复位">
+                      </div>
+                      <div class="function-type">
+                        <button type="button" name="button"><img src="../img/send.png" alt="发送"><p>发送</p></button>
+                        <button type="button" name="button"><img src="../img/clean.png" alt="清屏"><p>清屏</p></button>
+                        <button type="button" name="button"><img src="../img/check.png" alt="检查"><p>检查</p></button>
+                        <button type="button" name="button"><img src="../img/close.png" alt="断开"><p>断开</p></button>
+                        <button type="button" name="button"><img src="../img/connect.png" alt="连接"><p>连接</p></button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div id="chat-right">
+                    <div id="online-list">
+
+                    </div>
+                  </div>
+                </div>
+                <!-- 个人信息 -->
+                <div id="" class="content content-usermessage clearfix hide">
+                   <div class="top clearfix">
+                     <p class="usertext1">个人信息</p><p class="usertext2">/form</p>
+                   </div>
+                   <div id= "tab2" class="tab2">
+                       <ul>
+                         <li class="on">基本信息</li>
+                         <li class="off">修改头像</li>
+                         <li class="off">修改密码</li>
+                       </ul>
+                      <div id="basemessage" class="show">
+                        <form class="" action="${pageContext.request.contextPath } /${userid}/update" method="post"><br>
+                          <label for="userid" class="message1">用户名</label><input type="text" id="userid" name="userid" value=""><br>
+                          <label for="nickname" class="message2">昵称</label><input type="text" id="nickname" name="nickname" value=""><br>
+                          <label for="sex" class="message2">性别</label><select id="sex" name="sex">
+                            <option selected value="">男</option>
+                            <option value="">女</option>
+                          </select><br>
+                          <label for="age" class="message2">年龄</label><input type="text" id="age" name="age" value=""><br>
+                          <label for="profile" class="message3">个性签名</label><textarea name="profile" id="profile" rows="10"></textarea>
+                          <br>
+                          <input type="submit" name="submit" value="提交" class="submit">
+                        </form>
+
+                      </div>
+                      <div id="secondPage" class="hide">
+                          <form class="" action="${pageContext.request.contextPath } /${userid}/upload" enctype="multipart/form-data">
+
+                          </form>
+                      </div>
+                      <div id="thirdPage" class = "hide">
+                          <form class="" action="${pageContext.request.contextPath } /${userid}/editPassword" enctype="post">
+
+                          </form>
+                      </div>
+                    </div>
+                </div>
+                <!-- 个人设置 -->
+                <div id="" class="content content-userinstall clearfix hide">
+                  <div class="top2 clearfix">
+                    <p class="usertext1">系统设置</p><p class="usertext2">/form</p>
+                  </div>
+                  <div id= "tab3" class="tab2">
+                      <ul>
+                      <li class="on">基本设置</li>
+                      <li class="off">修改头像</li>
+                      <li class="off">修改密码</li>
+                      </ul>
+                     <div id="baseinstall" class="show">
+
+                     </div>
+                     <div id="secondPage" class="hide">
+                         <form class="" action="${pageContext.request.contextPath } /${userid}/upload" enctype="multipart/form-data">
+
+                         </form>
+                     </div>
+                     <div id="thirdPage" class = "hide">
+                         <form class="" action="${pageContext.request.contextPath } /${userid}/editPassword" enctype="post">
+
+                         </form>
+                     </div>
+                   </div>
+                </div>
+                <!-- 系统设置 -->
+
+                <div id="" class="content content-systeminstall hide"></div>
+                <!-- 系统日志 -->
+
+                <div id="" class="content content-systemdiary hide"></div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
