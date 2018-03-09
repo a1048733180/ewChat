@@ -28,7 +28,7 @@ public class LoginController {
 	@Autowired
 	private LogService logService;
 	
-	@RequestMapping(value="login",method=RequestMethod.GET)
+	@RequestMapping(value="/login",method=RequestMethod.GET)
 	private String login(Model model) {
 		System.out.println("你好,这是get");
 		return "login";
@@ -63,7 +63,7 @@ public class LoginController {
 		}else {
 			System.out.println("账号不存在");
 			mv.addObject("message","账号不存在，请重新输入");
-			mv.setViewName("redirect:/login");
+			mv.setViewName("login");
 		}
 		return mv;
 	}
