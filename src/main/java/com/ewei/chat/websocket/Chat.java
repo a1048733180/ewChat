@@ -20,7 +20,7 @@ import javax.websocket.*;
  *
  */
 
-@ServerEndpoint(value="/chat/{userid}",configurator=GetHttpSessionConfigurator.class)
+@ServerEndpoint(value="/chat",configurator=GetHttpSessionConfigurator.class)
 public class Chat {
 	
 	//静态变量，用于记录当前在线人数
@@ -168,7 +168,7 @@ public class Chat {
 	
 	//校验发送给谁
 	public void sendWho(String fromWho,String toWho,String sendMessage) {
-			if(toWho == null && toWho.equals("")) {
+			if(toWho.equals("")) {
 				//转发的对象为空,默认广播
 				sendAll(sendMessage);
 			}else {

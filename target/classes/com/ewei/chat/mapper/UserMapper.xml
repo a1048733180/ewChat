@@ -49,5 +49,4 @@
 	<insert id="insert" parameterType="com.ewei.chat.pojo.User">
 		insert into user(USERID,PASSWORD,NICKNAME) VALUES (#{userid},#{password},#{nickname})
 	</insert> 	
-	
 </mapper>
