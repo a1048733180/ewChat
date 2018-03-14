@@ -13,7 +13,7 @@
 
 <!-- 视图解析器 -->
 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-	<property name="prefix" value="/jsp/"></property>
+	<property name="prefix" value="/WEB-INF/jsp/"></property>
 	<property name="suffix" value=".jsp"></property>
 </bean>
     <!-- 静态资源映射 -->

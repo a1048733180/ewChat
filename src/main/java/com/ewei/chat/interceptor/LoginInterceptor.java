@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 public class LoginInterceptor implements HandlerInterceptor {
 	// 不拦截login、logout
-	private static final String[] IGNORE_URL = { "/login", "/logout" };
+	private static final String[] IGNORE_URL = { "/login", "/logout","/valider","/register" };
 
 	@Override
 	public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3)
